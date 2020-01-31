@@ -1,41 +1,27 @@
-let testData = {
-  max: 5,
-  data: [{lat: -9.594249, lng: -35.739521, count: 1}]
-};
+var map = L.map('map').setView([-9.648139, -35.717239], 13);
 
-const baseLayer = L.tileLayer(
-  'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',{
+L.tileLayer('https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 18
   }
-);
+).addTo(map);
 
-const cfg = {
-  // radius should be small ONLY if scaleRadius is true (or small radius is intended)
-  // if scaleRadius is false it will be the constant radius used in pixels
-  "radius": 0.0005,
-  "maxOpacity": .8,
-  // scales the radius based on map zoom
-  "scaleRadius": true,
-  // if set to false the heatmap uses the global maximum for colorization
-  // if activated: uses the data maximum within the current map boundaries
-  //   (there will always be a red spot with useLocalExtremas true)
-  "useLocalExtrema": true,
-  // which field name in your data represents the latitude - default "lat"
-  latField: 'lat',
-  // which field name in your data represents the longitude - default "lng"
-  lngField: 'lng',
-  // which field name in your data represents the data value - default "value"
-  valueField: 'count'
+
+var sidebar = L.control.sidebar({
+  autopan: true,       // whether to maintain the centered map point when opening the sidebar
+  closeButton: true,    // whether t add a close button to the panes
+  container: 'sidebar', // the DOM container or #ID of a predefined sidebar container that should be used
+  position: 'left',     // left or right
+}).addTo(map);
+
+/* add a new panel */
+var panelContent = {
+  id: 'app_info',                     // UID, used to access the panel
+  tab: 'Y',  // content can be passed as HTML string,
+  pane: "<br>   <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>",        // DOM elements can be passed, too
+  title: 'Yensa',              // an optional pane header
+  position: 'top'                  // optional vertical alignment, defaults to 'top'
 };
+sidebar.addPanel(panelContent);
 
-
-const heatmapLayer = new HeatmapOverlay(cfg);
-
-const map = new L.Map('map', {
-  center: new L.LatLng(-9.63, -35.72),
-  zoom: 14,
-  layers: [baseLayer, heatmapLayer]
-});
-
-heatmapLayer.setData(testData);
+sidebar.open('app_info')

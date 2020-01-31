@@ -13,6 +13,5 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require heatmap
-//= require leaflet-heatmap
+//= require leaflet-sidebar
 //= require complaints
