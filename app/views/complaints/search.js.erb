@@ -1,0 +1,12 @@
+if(marker){
+  marker.setLatLng(<%= @coordinates %>)
+  map.flyTo(marker.getLatLng(), 18)
+}
+else{
+  var marker = L.marker(<%= @coordinates %>, { draggable: 'true' } ).addTo(map);
+  map.flyTo(marker.getLatLng(), 18)
+}
+
+marker.on('dragend', function(event) {
+  
+});

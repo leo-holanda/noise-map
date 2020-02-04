@@ -28,7 +28,7 @@ sidebar.addPanel(panelContent);
 
 sidebar.addPanel({
   id: "user_info",
-  tab: 'S',
+  tab: "S",
   pane: ".",
   position: "top"
 });
