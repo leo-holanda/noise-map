@@ -1,0 +1,60 @@
+<p class="title">Relatar Queixa</p>
+
+<div class="field">
+    <%= form_with(url: "/search", method: "get") do %>
+      <%= label_tag('address_complaint', "Endereço", class: "label") %>
+      <div class="field has-addons">
+        <div class="control">
+          <%= text_field_tag 'address_complaint', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input' %>
+        </div>
+        <div class="control">
+          <%= submit_tag("Procurar", class: 'button is-primary') %>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+<%= form_with model: @complaint do |f| %>
+  <div class="field">
+    <%= f.label(:latitude, "Latitude", class: "label") %>
+    <div class="control">
+      <%= f.text_field :latitude, class: 'input', readonly: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label(:longitude, "Longitude", class: "label") %>
+    <div class="control">
+      <%= f.text_field :longitude, class: 'input', readonly: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label(:noise_type, "Tipo de queixa", class: "label") %>
+    <div class="control">
+      <div class="select">
+          <%= f.select(:noise_type, options_for_select(
+            [
+              ["Disparo de alarmes", 1],
+              ["Música alta", 2],
+              ["Obras de construção civil", 3],
+              ["Ruídos de vizinhos", 4],
+              ["Tráfego de veículos", 5]
+            ], 1), class:"select") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label(:description, "Descrição", class: "label") %>
+    <div class="control">
+      <%= f.text_area :description, placeholder: "Descreva a situação", class: 'textarea' %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.submit 'Criar relato', class: 'button is-link is-fullwidth' %>
+    </div>
+  </div>
+<% end %>

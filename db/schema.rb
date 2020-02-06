@@ -13,6 +13,10 @@
 ActiveRecord::Schema.define(version: 2020_01_24_191517) do
 
   create_table "complaints", force: :cascade do |t|
+    t.decimal "latitude", precision: 10, scale: 6, null: false
+    t.decimal "longitude", precision: 10, scale: 6, null: false
+    t.text "description"
+    t.integer "noise_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

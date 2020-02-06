@@ -26,8 +26,15 @@ var panelContent = {
 sidebar.addPanel(panelContent);
 
 sidebar.addPanel({
-  id: "user_info",
+  id: "search_address",
   tab: '<i class="fas fa-search"></i>',
+  pane: ".",
+  position: "top"
+});
+
+sidebar.addPanel({
+  id: "create_complaint",
+  tab: '<i class="fas fa-plus-circle"></i>',
   pane: ".",
   position: "top"
 });

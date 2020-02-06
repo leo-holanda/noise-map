@@ -1,12 +1,28 @@
-if(marker){
-  marker.setLatLng(<%= @coordinates %>)
-  map.flyTo(marker.getLatLng(), 18)
+if(<%= @is_complaint %>){
+  latitude_field = document.querySelector('#complaint_latitude');
+  longitude_field = document.querySelector('#complaint_longitude');
+
+  if(marker){
+    marker.setLatLng(<%= @coordinates %>)
+    map.flyTo(marker.getLatLng(), 18)
+  }
+  else{
+    var marker = L.marker(<%= @coordinates %>, { draggable: 'true',  } ).addTo(map)
+      .bindPopup('Clique e movimente o marcador para aumentar a precisão do endereço')
+      .openPopup();
+    map.flyTo(marker.getLatLng(), 18)
+  }
+
+  latitude_field.value = <%= @coordinates[0] %>
+  longitude_field.value = <%= @coordinates[1] %>
+
+  marker.on('dragend', function(event) {
+    latitude_field.value = event.target._latlng.lat
+    longitude_field.value = event.target._latlng.lng
+  });
 }
-else{
-  var marker = L.marker(<%= @coordinates %>, { draggable: 'true' } ).addTo(map);
-  map.flyTo(marker.getLatLng(), 18)
+else {
+  map.flyTo(<%= @coordinates%>, 18)
 }
 
-marker.on('dragend', function(event) {
-  
-});
+
