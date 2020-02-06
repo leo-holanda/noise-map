@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require font_awesome5
 //= require activestorage
 //= require turbolinks
 //= require leaflet-sidebar
