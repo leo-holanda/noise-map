@@ -7,7 +7,7 @@ if(<%= @is_complaint %>){
     map.flyTo(marker.getLatLng(), 18)
   }
   else{
-    var marker = L.marker(<%= @coordinates %>, { draggable: 'true',  } ).addTo(map)
+    var marker = L.marker(<%= @coordinates %>, { draggable: 'true' }).addTo(map)
       .bindPopup('Clique e movimente o marcador para aumentar a precisão do endereço')
       .openPopup();
     map.flyTo(marker.getLatLng(), 18)
@@ -24,5 +24,3 @@ if(<%= @is_complaint %>){
 else {
   map.flyTo(<%= @coordinates%>, 18)
 }
-
-

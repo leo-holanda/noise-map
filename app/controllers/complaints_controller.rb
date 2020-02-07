@@ -9,14 +9,7 @@ class ComplaintsController < ApplicationController
   end
 
   def search
-    if params[:address]
-      address = params[:address]
-      @is_complaint = false
-    elsif params[:address_complaint]
-      address = params[:address_complaint]
-      @is_complaint = true
-    end
-    
+    address = get_address
     if address
       @coordinates = (Geocoder.search(address)).first.coordinates
       respond_to do |format|
@@ -28,7 +21,7 @@ class ComplaintsController < ApplicationController
   def create
     @complaint = Complaint.new(complaint_params)
     if @complaint.save
-      flash[:info] = "Seu relato foi registrada com sucesso!"
+      flash[:info] = "Seu relato foi registrado com sucesso!"
     end
   end
 
@@ -37,4 +30,15 @@ class ComplaintsController < ApplicationController
   def complaint_params
     params.require(:complaint).permit(:latitude, :longitude, :description, :noise_type)
   end
+
+  def get_address
+    if params[:address]
+      @is_complaint = false
+      address = params[:address]
+    elsif params[:address_complaint]
+      @is_complaint = true
+      address = params[:address_complaint]
+    end
+  end
+
 end
