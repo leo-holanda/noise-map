@@ -14,5 +14,7 @@
 //= require font_awesome5
 //= require activestorage
 //= require turbolinks
-//= require leaflet-sidebar
+//= require leaflet/dist/leaflet-src
+//= require leaflet-sidebar-v2/js/leaflet-sidebar
+//= require leaflet.markercluster/dist/leaflet.markercluster-src
 //= require complaints

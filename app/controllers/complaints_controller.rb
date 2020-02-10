@@ -2,6 +2,8 @@ class ComplaintsController < ApplicationController
 
   def index
     @complaint = Complaint.new
+    @all_complaints = Complaint.all
+
     respond_to do |format|
       format.html
       format.js

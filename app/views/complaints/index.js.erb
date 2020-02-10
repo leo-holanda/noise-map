@@ -1,2 +1,10 @@
 document.querySelector("#search_address").innerHTML = "<%= escape_javascript(render partial: "layouts/search_address_form") %>"
 document.querySelector("#create_complaint").innerHTML = "<%= escape_javascript(render partial: "layouts/create_complaint_form") %>"
+
+let markers = L.markerClusterGroup();
+
+<% @all_complaints.each do |complaint| %>
+  markers.addLayer(L.marker([<%= complaint.latitude %>, <%= complaint.longitude %>]).bindPopup("<%= complaint.description %>"))
+<% end %>
+
+map.addLayer(markers);
