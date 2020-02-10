@@ -40,6 +40,30 @@ sidebar.addPanel({
   position: "top"
 });
 
+let cfg = {
+  "radius": 0.0016,
+  "maxOpacity": .7,
+  "scaleRadius": true,
+  "useLocalExtrema": true,
+};
+let heatmapLayer = new HeatmapOverlay(cfg);
+
+sidebar.addPanel({
+  id: 'change_layer',
+  tab: '<i class="fas fa-layer-group"></i>',
+  button: function (event) { 
+    if(map.hasLayer(clusterLayer)){
+      map.removeLayer(clusterLayer)
+      map.addLayer(heatmapLayer);
+      heatmapLayer.setData(heatmapData);
+    }
+    else{
+      map.removeLayer(heatmapLayer)
+      map.addLayer(clusterLayer)  
+    }
+  }
+});
+
 sidebar.open("app_info");
 
 document.addEventListener("DOMContentLoaded", function(event) {

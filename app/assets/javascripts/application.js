@@ -17,4 +17,6 @@
 //= require leaflet/dist/leaflet-src
 //= require leaflet-sidebar-v2/js/leaflet-sidebar
 //= require leaflet.markercluster/dist/leaflet.markercluster-src
+//= require heatmap.js/build/heatmap.js
+//= require heatmap.js/plugins/leaflet-heatmap/leaflet-heatmap.js
 //= require complaints

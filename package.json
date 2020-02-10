@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "bulma": "^0.8.0",
+    "heatmap.js": "^2.0.5",
     "leaflet": "^1.6.0",
     "leaflet-sidebar-v2": "^3.2.2",
     "leaflet.markercluster": "^1.4.1"

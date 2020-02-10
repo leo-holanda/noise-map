@@ -7,6 +7,11 @@ bulma@^0.8.0:
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.8.0.tgz#ac1606431703a4761b18a4a2d5cc1fa864a2aece"
   integrity sha512-nhf3rGyiZh/VM7FrSJ/5KeLlfaFkXz0nYcXriynfPH4vVpnxnqyEwaNGdNCVzHyyCA3cHgkQAMpdF/SFbFGZfA==
 
+heatmap.js@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/heatmap.js/-/heatmap.js-2.0.5.tgz#466d3b86513f5d49112a49d25700ab2730149153"
+  integrity sha1-Rm07hlE/XUkRKknSVwCrJzAUkVM=
+
 leaflet-sidebar-v2@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/leaflet-sidebar-v2/-/leaflet-sidebar-v2-3.2.2.tgz#c5da3303ec7cc2dacf990ea36fa701fc3213811f"
