@@ -1,17 +1,28 @@
-if(<%= @is_complaint %>){
-  latitude_field = document.querySelector('#complaint_latitude');
-  longitude_field = document.querySelector('#complaint_longitude');
+if(<%= @isComplaint %>){
+  var mapPin = L.icon({
+      iconUrl: '<%= asset_path "map-pin-solid.svg" %>',
+      iconSize:     [38, 95], // size of the icon
+      shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+  });
 
-  if(marker){
+  var marker = L.marker(<%= @coordinates %>, { draggable: 'true', icon: mapPin })
+                    .bindPopup('Clique e movimente o marcador para aumentar a precisão do endereço')
+                    .openPopup();
+
+  if(map.hasLayer(marker)){
     marker.setLatLng(<%= @coordinates %>)
     map.flyTo(marker.getLatLng(), 18)
   }
   else{
-    var marker = L.marker(<%= @coordinates %>, { draggable: 'true' }).addTo(map)
-      .bindPopup('Clique e movimente o marcador para aumentar a precisão do endereço')
-      .openPopup();
+    marker.addTo(map)
     map.flyTo(marker.getLatLng(), 18)
   }
+
+  var latitude_field = document.querySelector('#complaint_latitude');
+  var longitude_field = document.querySelector('#complaint_longitude');
 
   latitude_field.value = <%= @coordinates[0] %>
   longitude_field.value = <%= @coordinates[1] %>
@@ -20,6 +31,7 @@ if(<%= @is_complaint %>){
     latitude_field.value = event.target._latlng.lat
     longitude_field.value = event.target._latlng.lng
   });
+
 }
 else {
   map.flyTo(<%= @coordinates%>, 18)

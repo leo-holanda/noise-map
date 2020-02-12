@@ -11,6 +11,7 @@ class ComplaintsController < ApplicationController
   end
 
   def search
+    @isComplaint = params[:isComplaint]
     address = get_address
     if address
       @coordinates = (Geocoder.search(address)).first.coordinates
@@ -24,6 +25,7 @@ class ComplaintsController < ApplicationController
     @complaint = Complaint.new(complaint_params)
     if @complaint.save
       flash[:info] = "Seu relato foi registrado com sucesso!"
+      @marker = @complaint
     end
   end
 

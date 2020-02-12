@@ -1,4 +1,4 @@
-<p class="title">Relatar Queixa</p>
+<p class="title">Relatar queixa</p>
 
 <div class="field">
     <%= form_with(url: "/search", method: "get") do %>
@@ -7,6 +7,9 @@
         <div class="control">
           <%= text_field_tag 'address_complaint', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input' %>
         </div>
+
+        <%= hidden_field_tag 'isComplaint', '1' %>
+
         <div class="control">
           <%= submit_tag("Procurar", class: 'button is-primary') %>
         </div>
@@ -16,16 +19,14 @@
 
 <%= form_with model: @complaint do |f| %>
   <div class="field">
-    <%= f.label(:latitude, "Latitude", class: "label") %>
     <div class="control">
-      <%= f.text_field :latitude, class: 'input', readonly: true %>
+      <%= f.hidden_field :latitude, class: 'input', readonly: true %>
     </div>
   </div>
 
   <div class="field">
-    <%= f.label(:longitude, "Longitude", class: "label") %>
     <div class="control">
-      <%= f.text_field :longitude, class: 'input', readonly: true %>
+      <%= f.hidden_field :longitude, class: 'input', readonly: true %>
     </div>
   </div>
 
@@ -54,7 +55,19 @@
 
   <div class="field">
     <div class="control">
-      <%= f.submit 'Criar relato', class: 'button is-link is-fullwidth' %>
+      <%= f.button nil, class: 'button is-success is-pulled-left', type: "submit" do %>
+        <span class="icon is-small">
+          <i class="fas fa-check"></i>
+        </span> 
+        <span>Criar relato</span> 
+      <% end %>
+
+      <button id="reset_button" type="button" class="button is-danger is-outlined is-pulled-right">
+        <span class="icon is-small">
+          <i class="fas fa-times"></i>
+        </span>
+        <span>Cancelar</span>
+      </button>
     </div>
   </div>
 <% end %>
