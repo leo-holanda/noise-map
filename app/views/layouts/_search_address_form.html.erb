@@ -1,6 +1,6 @@
+<br>
 <%= form_with(url: "/search", method: "get") do %>
-<p class="title">Procurar endereço</p>
-
+  <%= label_tag('address_complaint', "Endereço", class: "label") %>
   <div class="field has-addons">
     <div class="control">
       <%= text_field_tag 'address', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input' %>
@@ -10,7 +10,7 @@
 
     <div class="field">
       <div class="control">
-        <%= submit_tag("Procurar", class: 'button is-link') %>
+        <%= submit_tag("Procurar", class: 'button is-primary') %>
       </div>
     </div>
   </div>

@@ -1,5 +1,5 @@
-document.querySelector("#search_address").innerHTML = "<%= escape_javascript(render partial: "layouts/search_address_form") %>"
-document.querySelector("#create_complaint").innerHTML = "<%= escape_javascript(render partial: "layouts/create_complaint_form") %>"
+document.querySelector("#search_address").innerHTML += "<%= escape_javascript(render partial: "layouts/search_address_form") %>"
+document.querySelector("#create_complaint").innerHTML += "<%= escape_javascript(render partial: "layouts/create_complaint_form") %>"
 
 const address_field = document.querySelector('#address_complaint')
 const latitude_field = document.querySelector('#complaint_latitude')
@@ -25,6 +25,15 @@ marker.on('dragend', function(event) {
 });
 
 const clusterLayer = L.markerClusterGroup();
+
+const config = {
+  "radius": 0.0016,
+  "maxOpacity": .7,
+  "scaleRadius": true,
+  "useLocalExtrema": true,
+};
+
+const heatmapLayer = new HeatmapOverlay(config);
 const heatmapData = { max: 8, data: [] };
 
 let latitude, longitude

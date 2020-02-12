@@ -1,5 +1,4 @@
-<p class="title">Relatar queixa</p>
-
+<br>
 <div class="field">
     <%= form_with(url: "/search", method: "get") do %>
       <%= label_tag('address_complaint', "Endereço", class: "label") %>
@@ -31,7 +30,7 @@
   </div>
 
   <div class="field">
-    <%= f.label(:noise_type, "Tipo de queixa", class: "label") %>
+    <%= f.label(:noise_type, "Tipo de ruído", class: "label") %>
     <div class="control">
       <div class="select">
           <%= f.select(:noise_type, options_for_select(
