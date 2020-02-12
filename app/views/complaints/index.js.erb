@@ -1,10 +1,33 @@
 document.querySelector("#search_address").innerHTML = "<%= escape_javascript(render partial: "layouts/search_address_form") %>"
 document.querySelector("#create_complaint").innerHTML = "<%= escape_javascript(render partial: "layouts/create_complaint_form") %>"
 
-let clusterLayer = L.markerClusterGroup();
-let heatmapData = {max: 8, data: []};
-let latitude, longitude;
+const address_field = document.querySelector('#address_complaint')
+const latitude_field = document.querySelector('#complaint_latitude')
+const longitude_field = document.querySelector('#complaint_longitude')
+const noise_type_field = document.querySelector('#complaint_noise_type')
+const description_field = document.querySelector('#complaint_description')
 
+const mapPin = L.icon({
+    iconUrl: '<%= asset_path "map-pin-solid.svg" %>',
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+const marker = L.marker([0,0], { draggable: 'true', icon: mapPin })
+             .bindPopup('Clique e movimente o marcador para aumentar a precisão do endereço')
+ 
+marker.on('dragend', function(event) {
+  latitude_field.value = event.target._latlng.lat
+  longitude_field.value = event.target._latlng.lng
+});
+
+const clusterLayer = L.markerClusterGroup();
+const heatmapData = { max: 8, data: [] };
+
+let latitude, longitude
 <% @all_complaints.each do |complaint| %>
   latitude = <%= complaint.latitude %>
   longitude = <%= complaint.longitude %>
@@ -13,4 +36,4 @@ let latitude, longitude;
   heatmapData.data.push({lat: latitude, lng: longitude, value: 1})
 <% end %>
 
-map.addLayer(clusterLayer);
+map.addLayer(clusterLayer)

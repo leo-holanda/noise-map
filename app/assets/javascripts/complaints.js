@@ -73,3 +73,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     dataType: "script",
   })
 })
+
+window.onload = function(){
+  document.querySelector('#reset_button').addEventListener('click', function(event){
+    address_field.value = ""
+    latitude_field.value = ""
+    longitude_field.value = ""
+    noise_type_field.value = 1
+    description_field.value = ""
+    sidebar.close()
+  })
+}

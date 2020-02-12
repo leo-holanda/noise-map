@@ -6,19 +6,15 @@ var new_marker_latitude = <%= @marker.latitude %>
 var new_marker_longitude = <%= @marker.longitude %>
 
 clusterLayer.addLayer(L.marker([new_marker_latitude, new_marker_longitude]).bindPopup("<%= @marker.description %>"))
-clusterLayer.refreshClusters();
+clusterLayer.refreshClusters()
 
 heatmapData.data.push({lat: new_marker_latitude, lng: new_marker_longitude, value: 1})
-heatmapLayer.setData(heatmapData);
+heatmapLayer.addData({lat: new_marker_latitude, lng: new_marker_longitude, value: 1})
 
-var address_field = document.querySelector('#address_complaint');
-var description_field = document.querySelector('#complaint_description');
-var noise_type_field = document.querySelector('#complaint_noise_type');
-
+address_field.value = ""
 latitude_field.value = ""
 longitude_field.value = ""
-address_field.value = ""
-description_field.value = ""
 noise_type_field.value = 1
+description_field.value = ""
 
-sidebar.close();
+sidebar.close()
