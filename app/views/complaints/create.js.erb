@@ -5,7 +5,7 @@ if(map.hasLayer(marker)){
 var new_marker_latitude = <%= @marker.latitude %>
 var new_marker_longitude = <%= @marker.longitude %>
 
-clusterLayer.addLayer(L.marker([new_marker_latitude, new_marker_longitude]).bindPopup("<%= @marker.description %>"))
+clusterLayer.addLayer(L.marker([new_marker_latitude, new_marker_longitude], { icon: complaintIcon }).bindPopup("<%= @marker.description %>"))
 clusterLayer.refreshClusters()
 
 heatmapData.data.push({lat: new_marker_latitude, lng: new_marker_longitude, value: 1})

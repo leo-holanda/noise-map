@@ -10,10 +10,16 @@ const description_field = document.querySelector('#complaint_description')
 const mapPin = L.icon({
     iconUrl: '<%= asset_path "map-pin-solid.svg" %>',
     iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
+const complaintIcon = L.icon({
+    iconUrl: '<%= asset_path "map-marker-alt-solid.svg" %>',
+    iconSize: [25, 41],
+    iconAnchor: [12, 37],
+    popupAnchor: [1, -34],
+    tooltipAnchor: [16, -28]
 });
 
 const marker = L.marker([0,0], { draggable: 'true', icon: mapPin })
@@ -41,7 +47,7 @@ let latitude, longitude
   latitude = <%= complaint.latitude %>
   longitude = <%= complaint.longitude %>
 
-  clusterLayer.addLayer(L.marker([latitude, longitude]).bindPopup("<%= complaint.description %>"))
+  clusterLayer.addLayer(L.marker([latitude, longitude], { icon: complaintIcon }).bindPopup("<%= complaint.description %>"))
   heatmapData.data.push({lat: latitude, lng: longitude, value: 1})
 <% end %>
 
