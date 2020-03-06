@@ -1,0 +1,16 @@
+if("<%= raw @error[0] %>" == "Description can't be blank"){
+  document.querySelector("#complaint_description").classList.add('is-danger')
+  message = document.querySelector("#invalid_description_message")
+  if(!message){
+    document.querySelector("#description_field").innerHTML +=
+    '<p id= "invalid_description_message" class="help is-danger">A descrição deve ter entre 1 e 280 caracteres</p>'
+  }
+}
+else if("<%= raw @error[0] %>" == "Latitude can't be blank" && "<%= raw @error[1] %>" == "Longitude can't be blank"){
+  document.querySelector("#complaint_address_text_field").classList.add('is-danger')
+  message = document.querySelector("#invalid_address_message")
+  if(!message){
+    document.querySelector("#complaint_address_field").innerHTML +=
+    '<p id= "complaint_invalid_address_message" class="help is-danger">Insira o endereço e clique em procurar pra gerar o marcador!</p>'
+  }
+}

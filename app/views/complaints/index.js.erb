@@ -1,11 +1,12 @@
 document.querySelector("#search_address").innerHTML += "<%= escape_javascript(render partial: "layouts/search_address_form") %>"
 document.querySelector("#create_complaint").innerHTML += "<%= escape_javascript(render partial: "layouts/create_complaint_form") %>"
 
-const address_field = document.querySelector('#address_complaint')
+const address_field = document.querySelector('#complaint_address_text_field')
 const latitude_field = document.querySelector('#complaint_latitude')
 const longitude_field = document.querySelector('#complaint_longitude')
 const noise_type_field = document.querySelector('#complaint_noise_type')
 const description_field = document.querySelector('#complaint_description')
+let message = ""
 
 const mapPin = L.icon({
     iconUrl: '<%= asset_path "map-pin-solid.svg" %>',
@@ -52,3 +53,19 @@ let latitude, longitude
 <% end %>
 
 map.addLayer(clusterLayer)
+
+window.onload = function(){
+  document.querySelector('#reset_button').addEventListener('click', function(event){
+    address_field.value = ""
+    latitude_field.value = ""
+    longitude_field.value = ""
+    noise_type_field.value = 1
+    description_field.value = ""
+
+    if(map.hasLayer(marker)){
+      map.removeLayer(marker)
+    }
+    
+    sidebar.close()
+  })
+}

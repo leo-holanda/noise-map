@@ -12,11 +12,16 @@ class ComplaintsController < ApplicationController
 
   def search
     @isComplaint = params[:isComplaint]
-    address = get_address
-    if address
-      @coordinates = (Geocoder.search(address)).first.coordinates
+
+    @location = Location.new(location_params)
+
+    if @location.valid?
       respond_to do |format|
         format.js
+      end
+    else
+      respond_to do |format|
+        format.js { render 'location_error' }
       end
     end
   end
@@ -24,8 +29,13 @@ class ComplaintsController < ApplicationController
   def create
     @complaint = Complaint.new(complaint_params)
     if @complaint.save
-      flash[:info] = "Seu relato foi registrado com sucesso!"
       @marker = @complaint
+    else
+      @error = @complaint.errors.full_messages
+      p @error
+      respond_to do |format|
+        format.js { render 'complaint_error'}
+      end
     end
   end
 
@@ -35,14 +45,8 @@ class ComplaintsController < ApplicationController
     params.require(:complaint).permit(:latitude, :longitude, :description, :noise_type)
   end
 
-  def get_address
-    if params[:address]
-      @is_complaint = false
-      address = params[:address]
-    elsif params[:address_complaint]
-      @is_complaint = true
-      address = params[:address_complaint]
-    end
+  def location_params
+    params.permit(:address)
   end
-
+  
 end

@@ -22,7 +22,7 @@ sidebar.addPanel({
          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
          </p>`, // DOM elements can be passed, too
-  title: "Mapa de Ruído Urbano em Maceió", // an optional pane header
+  title: "Mapa de Ruído Urbano", // an optional pane header
   position: "top"
 });
 
@@ -74,19 +74,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
     dataType: "script",
   })
 })
-
-window.onload = function(){
-  document.querySelector('#reset_button').addEventListener('click', function(event){
-    address_field.value = ""
-    latitude_field.value = ""
-    longitude_field.value = ""
-    noise_type_field.value = 1
-    description_field.value = ""
-
-    if(map.hasLayer(marker)){
-      map.removeLayer(marker)
-    }
-    
-    sidebar.close()
-  })
-}

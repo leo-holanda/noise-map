@@ -1,5 +1,7 @@
+map.flyTo([<%= @location.latitude %>, <%= @location.longitude %>], 18)
+
 if(<%= @isComplaint %>){
-  marker.setLatLng(<%= @coordinates %>)
+  marker.setLatLng([<%= @location.latitude %>, <%= @location.longitude %>])
 
   if(!map.hasLayer(marker)){
     marker.addTo(map)
@@ -8,9 +10,19 @@ if(<%= @isComplaint %>){
   map.flyTo(marker.getLatLng(), 18)
   marker.openPopup()
   
-  latitude_field.value = <%= @coordinates[0] %>
-  longitude_field.value = <%= @coordinates[1] %>
+  latitude_field.value = <%= @location.latitude %>
+  longitude_field.value = <%= @location.longitude %>
+
+  document.querySelector("#complaint_address_text_field").classList.remove('is-danger')
+  message = document.querySelector("#complaint_invalid_address_message")
+  if(message){
+    message.parentNode.removeChild(message)
+  }
 }
-else {
-  map.flyTo(<%= @coordinates%>, 18)
+else{
+  document.querySelector("#search_address_text_field").classList.remove('is-danger')
+  message = document.querySelector("#invalid_address_message")
+  if(message){
+    message.parentNode.removeChild(message)
+  }
 }

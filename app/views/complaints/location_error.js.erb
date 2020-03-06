@@ -1,0 +1,16 @@
+if(<%= @isComplaint %>){
+  document.querySelector("#complaint_address_text_field").classList.add('is-danger')
+  message = document.querySelector("#invalid_address_message")
+  if(!message){
+    document.querySelector("#complaint_address_field").innerHTML += '<p id= "complaint_invalid_address_message" class="help is-danger">O endereço é inválido!</p>'
+  }
+  document.querySelector("#complaint_search_address_button").disabled = false
+}
+else {
+  document.querySelector("#search_address_text_field").classList.add('is-danger')
+  let message =  document.querySelector("#invalid_address_message")
+  if(!message){
+    document.querySelector("#search_address_field").innerHTML += '<p id= "invalid_address_message" class="help is-danger">O endereço é inválido!</p>'
+  }
+  document.querySelector("#search_address_button").disabled = false
+}
