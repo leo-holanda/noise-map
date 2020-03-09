@@ -4,7 +4,7 @@
       <%= label_tag('address_complaint', "Endereço", class: "label") %>
       <div class="field has-addons">
         <div class="control">
-          <%= text_field_tag 'complaint_address_text_field', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input', name: 'address' %>
+          <%= text_field_tag 'complaint_address_text_field', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input', name: 'address', required: true %>
         </div>
 
         <%= hidden_field_tag 'isComplaint', '1' %>
@@ -48,7 +48,7 @@
   <div id="description_field" class="field">
     <%= f.label(:description, "Descrição", class: "label") %>
     <div class="control">
-      <%= f.text_area :description, placeholder: "Descreva a situação", class: 'textarea' %>
+      <%= f.text_area :description, placeholder: "Descreva a situação", class: 'textarea', required: true %>
     </div>
   </div>
 
