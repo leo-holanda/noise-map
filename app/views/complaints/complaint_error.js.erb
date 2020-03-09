@@ -11,6 +11,6 @@ else if("<%= raw @error[0] %>" == "Latitude can't be blank" && "<%= raw @error[1
   message = document.querySelector("#invalid_address_message")
   if(!message){
     document.querySelector("#complaint_address_field").innerHTML +=
-    '<p id= "complaint_invalid_address_message" class="help is-danger">Insira o endereço e clique em procurar pra gerar o marcador!</p>'
+    '<p id= "complaint_invalid_coordinates_message" class="help is-danger">Insira o endereço e clique em procurar pra gerar o marcador!</p>'
   }
 }

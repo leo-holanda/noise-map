@@ -1,8 +1,12 @@
 document.querySelector("#complaint_description").classList.remove('is-danger')
 message = document.querySelector("#invalid_description_message")
-if(message){
-  message.parentNode.removeChild(message)
-}
+message ? message.parentNode.removeChild(message) : ""
+
+message = document.querySelector("#invalid_address_message")
+message ? message.parentNode.removeChild(message) : ""
+
+message = document.querySelector("#complaint_invalid_coordinates_message")
+message ? message.parentNode.removeChild(message) : ""
 
 if(map.hasLayer(marker)){
   map.removeLayer(marker)
@@ -11,7 +15,10 @@ if(map.hasLayer(marker)){
 var new_marker_latitude = <%= @marker.latitude %>
 var new_marker_longitude = <%= @marker.longitude %>
 
-var new_marker = L.marker([new_marker_latitude, new_marker_longitude], { icon: complaintIcon }).bindPopup("<%= @marker.description %>")
+var new_marker = L.marker([new_marker_latitude, new_marker_longitude], { icon: complaintIcon }).bindPopup(
+    "<strong>Tipo</strong> <br> <%= @marker.get_noise_type %> <br><br>"
+    + "<strong>Descrição</strong> <br> <%= @marker.description %> <br><br>"
+    + "<strong>Criado em</strong> <br> <%= @marker.created_at %>")
 
 clusterLayer.addLayer(new_marker)
 clusterLayer.refreshClusters()

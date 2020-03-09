@@ -48,7 +48,11 @@ let latitude, longitude
   latitude = <%= complaint.latitude %>
   longitude = <%= complaint.longitude %>
 
-  clusterLayer.addLayer(L.marker([latitude, longitude], { icon: complaintIcon }).bindPopup("<%= complaint.description %>"))
+  clusterLayer.addLayer(L.marker([latitude, longitude], { icon: complaintIcon }).bindPopup(
+    "<strong>Tipo</strong> <br> <%= complaint.get_noise_type %> <br><br>"
+    + "<strong>Descrição</strong> <br> <%= complaint.description %> <br><br>"
+    + "<strong>Criado em</strong> <br> <%= complaint.created_at %>"))
+
   heatmapData.data.push({lat: latitude, lng: longitude, value: 1})
 <% end %>
 
