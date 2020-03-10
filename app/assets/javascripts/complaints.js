@@ -3,7 +3,8 @@ var map = L.map("map").setView([-9.648139, -35.717239], 13);
 L.tileLayer("https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  maxZoom: 18
+  maxZoom: 18,
+  minZoom: 12
 }).addTo(map);
 
 var sidebar = L.control.sidebar({
@@ -17,10 +18,13 @@ sidebar.addPanel({
   id: "app_info", // UID, used to access the panel
   tab: '<i class="fas fa-home"></i>', // content can be passed as HTML string,
   pane: `<br><p class="is-family-primary has-text-weight-semibold is-size-6"> 
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-         Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+         Noise-map é mapa interativo de relatos sobre ruídos urbanos como obras de construção civil, tráfego de veículos e vizinhos incômodos, por exemplo. 
+         É possível visualizar os relatos através de marcadores no mapa que, ao serem clicados, revelam o tipo de ruído, a descrição proveniente do usuário e
+         o dia e hora de criação do relato. <br><br> Caso haja uma área com alta concentração de relatos, estes serão agrupados para facilitar seu acesso, bem como para
+         melhorar a visibilidade do mapa. Nota-se o agrupamento através de um círculo colorido envolvendo um contador de relatos que, ao ser clicado, revela os marcadores anteriormente agrupados. 
+         Além disso, é possível visualizar os relatos através do mapa de calor clicando no ícone <i class="fas fa-layer-group"></i>.
+         <br><br> Para adicionar um relato, clique no ícone <i class="fas fa-plus-circle"></i>. Para visualizar os relatos nos arredores de um determinado endereço,
+         clique no ícone <i class="fas fa-search"></i>. 
          </p>`, // DOM elements can be passed, too
   title: "Mapa de Ruído Urbano", // an optional pane header
   position: "top"
@@ -61,7 +65,7 @@ sidebar.addPanel({
 sidebar.addPanel({
   id: 'github_link',
   tab: '<i class="fab fa-github"></i>',
-  button: 'https://github.com/leo-holanda',
+  button: 'https://github.com/leo-holanda/noise-map',
   position: 'bottom'
 });
 
