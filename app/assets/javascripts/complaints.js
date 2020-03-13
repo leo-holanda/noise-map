@@ -2,7 +2,7 @@ var map = L.map("map").setView([-9.648139, -35.717239], 13);
 
 L.tileLayer("https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png", {
   attribution:
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://pickpoint.io/">PickPoint</a> contributors',
   maxZoom: 18,
   minZoom: 12
 }).addTo(map);

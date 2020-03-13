@@ -11,6 +11,7 @@ Interactive map where the user can see and create reports of urban noise marked 
 * [heatmap.js](https://www.patrick-wied.at/static/heatmapjs/) - "Dynamic Heatmaps for the Web"
 * [Bulma](https://bulma.io/) - CSS Framework
 * [Geocoder](https://github.com/alexreisner/geocoder) - "Complete Ruby geocoding solution"
+  * [PickPoint](https://pickpoint.io/) - "Geocoding service for developers"
 * [Font Awesome](https://fontawesome.com/) - Icon set
 
 ## Getting Started
