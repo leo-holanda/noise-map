@@ -58,18 +58,16 @@ let latitude, longitude
 
 map.addLayer(clusterLayer)
 
-window.onload = function(){
-  document.querySelector('#reset_button').addEventListener('click', function(event){
-    address_field.value = ""
-    latitude_field.value = ""
-    longitude_field.value = ""
-    noise_type_field.value = 1
-    description_field.value = ""
+document.querySelector('#reset_button').addEventListener('click', function(event){
+  address_field.value = ""
+  latitude_field.value = ""
+  longitude_field.value = ""
+  noise_type_field.value = 1
+  description_field.value = ""
 
-    if(map.hasLayer(marker)){
-      map.removeLayer(marker)
-    }
-    
-    sidebar.close()
-  })
-}
+  if(map.hasLayer(marker)){
+    map.removeLayer(marker)
+  }
+  
+  sidebar.close()
+})
