@@ -4,8 +4,14 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+ok: 
+  latitude: 0.49587293e2
+  longitude: -0.93748259e2
+  description: "dsasdasd"
+  noise_type: 1
+
+wrong_noise_type: 
+  latitude: 0.49587293e2
+  longitude: -0.93748259e2
+  description: "dsasdasd"
+  noise_type: 0

@@ -2,47 +2,43 @@ require 'test_helper'
 
 class ComplaintsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @complaint = complaints(:one)
+    @complaint = complaints(:ok)
+    
+    @search_params = {"address"=>"mad dog road"}
+    @params_location_error = {"address"=>""}
+    @post_params = {"complaint"=>{"latitude"=>"0.49587293e2", "longitude"=>"-0.93748259e2", "noise_type"=>"2", "description"=>"test"}}
+    @post_params_error = {"complaint"=>{"latitude"=>"", "longitude"=>"", "noise_type"=>"2", "description"=>"test"}}
+
   end
 
   test "should get index" do
-    get complaints_url
-    assert_response :success
+    get root_path
+    assert_template "complaints/index"
+    assert_template layout: "layouts/application"
   end
 
-  test "should get new" do
-    get new_complaint_url
-    assert_response :success
+  test "should get index with js" do
+    get root_path, xhr: true
+    assert_template "complaints/index"
   end
 
-  test "should create complaint" do
-    assert_difference('Complaint.count') do
-      post complaints_url, params: { complaint: {  } }
-    end
-
-    assert_redirected_to complaint_url(Complaint.last)
+  test "should get search" do
+    get search_path(@search_params), xhr: true
+    assert_template "complaints/search"
   end
 
-  test "should show complaint" do
-    get complaint_url(@complaint)
-    assert_response :success
+  test "should not get search" do
+    get search_path(@params_location_error), xhr: true
+    assert_template "complaints/location_error"
   end
 
-  test "should get edit" do
-    get edit_complaint_url(@complaint)
-    assert_response :success
+  test "should post complaint" do
+    post complaints_path(@post_params), xhr: true
+    assert_template "complaints/create"
   end
 
-  test "should update complaint" do
-    patch complaint_url(@complaint), params: { complaint: {  } }
-    assert_redirected_to complaint_url(@complaint)
-  end
-
-  test "should destroy complaint" do
-    assert_difference('Complaint.count', -1) do
-      delete complaint_url(@complaint)
-    end
-
-    assert_redirected_to complaints_url
+  test "should not post complaint" do
+    post complaints_path(@post_params_error), xhr: true
+    assert_template "complaints/complaint_error"
   end
 end

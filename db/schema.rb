@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_03_05_201724) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "complaints", force: :cascade do |t|
     t.decimal "latitude", precision: 10, scale: 6, null: false
     t.decimal "longitude", precision: 10, scale: 6, null: false

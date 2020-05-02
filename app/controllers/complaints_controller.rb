@@ -12,7 +12,6 @@ class ComplaintsController < ApplicationController
 
   def search
     @isComplaint = params[:isComplaint]
-
     @location = Location.new(location_params)
 
     if @location.valid?
@@ -32,7 +31,6 @@ class ComplaintsController < ApplicationController
       @marker = @complaint
     else
       @error = @complaint.errors.full_messages
-      p @error
       respond_to do |format|
         format.js { render 'complaint_error'}
       end

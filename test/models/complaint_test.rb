@@ -1,7 +1,53 @@
 require 'test_helper'
 
 class ComplaintTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @complaint = complaints(:ok)
+  end
+
+  test "should not save complaint without description" do
+    complaint = Complaint.new
+    complaint.latitude = 1
+    complaint.longitude = 1
+    complaint.description = nil
+    complaint.noise_type = 1
+    assert_not complaint.save
+  end
+
+  test "should not save complaint without latitude" do
+    complaint = Complaint.new
+    complaint.latitude = nil
+    complaint.longitude = 1
+    complaint.description = "test"
+    complaint.noise_type = 1
+    assert_not complaint.save
+  end
+
+  test "should not save complaint without longitude" do
+    complaint = Complaint.new
+    complaint.latitude = 1
+    complaint.longitude = nil
+    complaint.description = "test"
+    complaint.noise_type = 1
+    assert_not complaint.save
+  end
+
+  test "should not save complaint without noise type" do
+    complaint = Complaint.new
+    complaint.latitude = 1
+    complaint.longitude = 1
+    complaint.description = "test"
+    complaint.noise_type = nil
+    assert_not complaint.save
+  end
+
+  test "should get noise type" do
+    noise_type = @complaint.get_noise_type  
+    refute_nil noise_type
+  end
+
+  test "should not get noise type" do
+    complaint = complaints(:wrong_noise_type)  
+    assert_nil complaint.get_noise_type
+  end
 end
