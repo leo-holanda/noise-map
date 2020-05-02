@@ -1,20 +1,8 @@
-<br>
-<div id="complaint_address_field" class="field">
-    <%= form_with(url: "/search", method: "get") do %>
-      <%= label_tag('address_complaint', "Endereço", class: "label") %>
-      <div class="field has-addons">
-        <div class="control">
-          <%= text_field_tag 'complaint_address_text_field', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input', name: 'address', required: true %>
-        </div>
-
-        <%= hidden_field_tag 'isComplaint', '1' %>
-
-        <div class="control">
-          <%= submit_tag("Procurar", class: 'button is-primary', id: 'complaint_search_address_button') %>
-        </div>
-      </div>
-    <% end %>
-</div>
+<%= render "layouts/search_address_form",
+           is_complaint: 1,
+           div_id: "complaint_address_form",
+           field_id: 'complaint_address_field',
+           button_id: 'complaint_address_button' %>
 
 <%= form_with model: @complaint do |f| %>
   <div class="field">

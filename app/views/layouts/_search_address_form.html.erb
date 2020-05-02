@@ -1,19 +1,18 @@
 <br>
 
-<div id="search_address_field">
+<div id= <%= div_id %>>
   <%= form_with(url: "/search", method: "get") do %>
   <%= label_tag('address_complaint', "Endereço", class: "label") %>
   <div class="field has-addons">
     <div class="control">
-      <%= text_field_tag 'search_address_text_field', nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input', name: 'address', required: true %>
+      <%= text_field_tag field_id, nil, placeholder: 'e. g. Av. Silvio Carlos Viana, 2183', class: 'input', name: 'address', required: true %>
     </div>
 
-    <%= hidden_field_tag 'isComplaint', '0' %>
+    <%= hidden_field_tag 'isComplaint',  is_complaint  %>
 
     <div class="control">
-      <%= submit_tag("Procurar", class: 'button is-primary', id: "search_address_button") %>
+      <%= submit_tag("Procurar", class: 'button is-primary', id: button_id ) %>
     </div>
   </div>
-  
 <% end %>
 </div>

@@ -1,7 +1,13 @@
-document.querySelector("#search_address").innerHTML += "<%= escape_javascript(render partial: "layouts/search_address_form") %>"
-document.querySelector("#create_complaint").innerHTML += "<%= escape_javascript(render partial: "layouts/create_complaint_form") %>"
+document.querySelector("#search_address").innerHTML +=
+"<%= escape_javascript(render "layouts/search_address_form",
+                              is_complaint: 0,
+                              div_id: 'search_address_form',
+                              field_id: 'search_address_field',
+                              button_id: 'search_address_button' ) %>"
 
-const address_field = document.querySelector('#complaint_address_text_field')
+document.querySelector("#create_complaint").innerHTML += "<%= escape_javascript(render "layouts/create_complaint_form") %>"
+
+const address_field = document.querySelector('#complaint_address_field')
 const latitude_field = document.querySelector('#complaint_latitude')
 const longitude_field = document.querySelector('#complaint_longitude')
 const noise_type_field = document.querySelector('#complaint_noise_type')

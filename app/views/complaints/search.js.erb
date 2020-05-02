@@ -13,14 +13,14 @@ if(<%= @isComplaint %>){
   latitude_field.value = <%= @location.latitude %>
   longitude_field.value = <%= @location.longitude %>
 
-  document.querySelector("#complaint_address_text_field").classList.remove('is-danger')
+  document.querySelector("#complaint_address_field").classList.remove('is-danger')
   message = document.querySelector("#complaint_invalid_address_message")
   message ? message.parentNode.removeChild(message) : ""
   message = document.querySelector("#complaint_invalid_coordinates_message")
   message ? message.parentNode.removeChild(message) : ""
 }
 else{
-  document.querySelector("#search_address_text_field").classList.remove('is-danger')
+  document.querySelector("#search_address_field").classList.remove('is-danger')
   message = document.querySelector("#invalid_address_message")
   message ? message.parentNode.removeChild(message) : ""
 }
