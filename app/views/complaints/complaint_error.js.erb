@@ -7,10 +7,13 @@ if("<%= raw @error[0] %>" == "Description can't be blank"){
   }
 }
 else if("<%= raw @error[0] %>" == "Latitude can't be blank" && "<%= raw @error[1] %>" == "Longitude can't be blank"){
-  document.querySelector("#complaint_address_text_field").classList.add('is-danger')
-  message = document.querySelector("#invalid_address_message")
+  document.querySelector("#complaint_address_field").classList.add('is-danger')
+  message = document.querySelector("#complaint_invalid_coordinates_message")
   if(!message){
-    document.querySelector("#complaint_address_field").innerHTML +=
+    document.querySelector("#complaint_address_form").innerHTML +=
     '<p id= "complaint_invalid_coordinates_message" class="help is-danger">Insira o endereço e clique em procurar pra gerar o marcador!</p>'
   }
 }
+
+// Update reference to field, changing CSS classes apparently change reference too
+address_field = document.querySelector('#complaint_address_field')

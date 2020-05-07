@@ -1,6 +1,6 @@
 if(<%= @isComplaint %>){
   document.querySelector("#complaint_address_field").classList.add('is-danger')
-  message = document.querySelector("#invalid_address_message")
+  message = document.querySelector("#complaint_invalid_address_message")
   if(!message){
     document.querySelector("#complaint_address_form").innerHTML += '<p id= "complaint_invalid_address_message" class="help is-danger">O endereço é inválido!</p>'
   }
@@ -8,9 +8,12 @@ if(<%= @isComplaint %>){
 }
 else {
   document.querySelector("#search_address_field").classList.add('is-danger')
-  let message =  document.querySelector("#invalid_address_message")
+  message = document.querySelector("#invalid_address_message")
   if(!message){
     document.querySelector("#search_address_form").innerHTML += '<p id= "invalid_address_message" class="help is-danger">O endereço é inválido!</p>'
   }
   document.querySelector("#search_address_button").disabled = false
 }
+
+// Update reference to field, changing CSS classes apparently change reference too
+address_field = document.querySelector('#complaint_address_field')
