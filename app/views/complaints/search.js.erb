@@ -1,7 +1,7 @@
-map.flyTo([<%= @location.latitude %>, <%= @location.longitude %>], 18)
+map.flyTo([<%= @coordinates[0] %>, <%= @coordinates[1] %>], 18)
 
 if(<%= @isComplaint %>){
-  marker.setLatLng([<%= @location.latitude %>, <%= @location.longitude %>])
+  marker.setLatLng([<%= @coordinates[0] %>, <%= @coordinates[1] %>])
 
   if(!map.hasLayer(marker)){
     marker.addTo(map)
@@ -10,8 +10,8 @@ if(<%= @isComplaint %>){
   map.flyTo(marker.getLatLng(), 18)
   marker.openPopup()
   
-  latitude_field.value = <%= @location.latitude %>
-  longitude_field.value = <%= @location.longitude %>
+  latitude_field.value = <%= @coordinates[0] %> 
+  longitude_field.value = <%= @coordinates[1] %>
 
   document.querySelector("#complaint_address_field").classList.remove('is-danger')
   message = document.querySelector("#complaint_invalid_address_message")

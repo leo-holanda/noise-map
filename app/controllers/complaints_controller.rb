@@ -12,15 +12,17 @@ class ComplaintsController < ApplicationController
 
   def search
     @isComplaint = params[:isComplaint]
-    @location = Location.new(location_params)
+    address = search_params[:address]
+    results = Geocoder.search(address)
 
-    if @location.valid?
-      respond_to do |format|
-        format.js
-      end
-    else
+    if results.empty?
       respond_to do |format|
         format.js { render 'location_error' }
+      end
+    else
+      @coordinates = results.first.coordinates
+      respond_to do |format|
+        format.js
       end
     end
   end
@@ -43,7 +45,7 @@ class ComplaintsController < ApplicationController
     params.require(:complaint).permit(:latitude, :longitude, :description, :noise_type)
   end
 
-  def location_params
+  def search_params
     params.permit(:address)
   end
   
