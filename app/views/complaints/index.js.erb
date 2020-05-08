@@ -1,3 +1,18 @@
+function get_noise_type(token){
+  switch(token){
+    case 1:
+      return "Disparo de alarmes"
+    case 2:
+      return "Música alta"
+    case 3:
+      return "Obras de construção civil"
+    case 4:
+      return  "Ruídos de vizinhos"
+    case 5:
+      return  "Tráfego de veículos"
+  }
+}
+
 document.querySelector("#search_address").innerHTML +=
 "<%= escape_javascript(render "layouts/search_address_form",
                               is_complaint: 0,
@@ -49,18 +64,15 @@ const config = {
 const heatmapLayer = new HeatmapOverlay(config);
 const heatmapData = { max: 8, data: [] };
 
-let latitude, longitude
-<% @all_complaints.each do |complaint| %>
-  latitude = <%= complaint.latitude %>
-  longitude = <%= complaint.longitude %>
+let complaints = <%= raw  @all_complaints.to_json %>
+for (let i = 0; i < complaints.length; i++) {
+  clusterLayer.addLayer(L.marker([complaints[i].latitude, complaints[i].longitude], { icon: complaintIcon }).bindPopup(
+    "<strong>Tipo</strong> <br>" + get_noise_type(complaints[i].noise_type) + "<br><br>"
+    + "<strong>Descrição</strong> <br>" + complaints[i].description + "<br><br>"
+    + "<strong>Criado em</strong> <br>" + complaints[i].created_at ))
 
-  clusterLayer.addLayer(L.marker([latitude, longitude], { icon: complaintIcon }).bindPopup(
-    "<strong>Tipo</strong> <br> <%= complaint.get_noise_type %> <br><br>"
-    + "<strong>Descrição</strong> <br> <%= complaint.description %> <br><br>"
-    + "<strong>Criado em</strong> <br> <%= complaint.created_at %>"))
-
-  heatmapData.data.push({lat: latitude, lng: longitude, value: 1})
-<% end %>
+  heatmapData.data.push({lat: complaints[i].latitude, lng: complaints[i].longitude, value: 1})
+}
 
 map.addLayer(clusterLayer)
 
