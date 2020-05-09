@@ -1,0 +1,2 @@
+class NoiseType < ApplicationRecord
+end
