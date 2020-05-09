@@ -1,23 +1,18 @@
 class Complaint < ApplicationRecord
-  validates :latitude, :longitude, :noise_type, :description, presence: true
-  validates :description, length: { maximum: 280 }
+  before_save :update_count
+  belongs_to :noise_type
 
-  def get_noise_type()
-    case self.noise_type
-    when 1
-      "Disparo de alarmes"
-    when 2
-      "Música alta"
-    when 3
-      "Obras de construção civil"
-    when 4
-      "Ruídos de vizinhos"
-    when 5
-      "Tráfego de veículos"
-    end
-  end
+  validates :latitude, :longitude, :noise_type_id, :description, presence: true
+  validates :description, length: { maximum: 280 }
 
   def created_at
     self[:created_at].strftime("%d/%m/%Y | %H:%M")
+  end
+
+  private
+
+  def update_count
+    @noise_type = NoiseType.find(self.noise_type_id)
+    @noise_type.increment_count
   end
 end
