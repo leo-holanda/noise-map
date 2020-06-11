@@ -63,6 +63,30 @@ sidebar.addPanel({
 });
 
 sidebar.addPanel({
+  id: 'charts',
+  tab: '<i class="fas fa-chart-pie"></i>',
+  pane: '<button onclick="update(data1)">Variable 1</button>\
+        <button onclick="update(data2)">Variable 2</button>\
+        <div class="container" id="charts"></div>',
+  title: "Visualização de Dados",
+  position: "top"
+});
+
+//Increase sidebar width when clicking on charts to improve visibility
+sidebar.on('content', function (e) {
+  const sidebarElement = document.querySelector('.leaflet-sidebar') 
+  if (e.id == "charts"){
+    sidebarElement.style.width = "50%"
+    sidebarElement.style.maxWidth = "50%"
+  }
+})
+
+//Remove attribute "style" to allow closing the sidebar (bug otherwise)
+sidebar.on('closing', function (e) {
+  document.querySelector('.leaflet-sidebar').removeAttribute("style")
+})
+
+sidebar.addPanel({
   id: 'github_link',
   tab: '<i class="fab fa-github"></i>',
   button: 'https://github.com/leo-holanda/noise-map',
