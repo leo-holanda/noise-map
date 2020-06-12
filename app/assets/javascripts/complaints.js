@@ -65,9 +65,7 @@ sidebar.addPanel({
 sidebar.addPanel({
   id: 'charts',
   tab: '<i class="fas fa-chart-pie"></i>',
-  pane: '<button onclick="update(data1)">Variable 1</button>\
-        <button onclick="update(data2)">Variable 2</button>\
-        <div class="container" id="charts"></div>',
+  pane: '<div class="container" id="charts"></div>',
   title: "Visualização de Dados",
   position: "top"
 });
@@ -78,6 +76,9 @@ sidebar.on('content', function (e) {
   if (e.id == "charts"){
     sidebarElement.style.width = "50%"
     sidebarElement.style.maxWidth = "50%"
+  }
+  else{
+    document.querySelector('.leaflet-sidebar').removeAttribute("style")
   }
 })
 

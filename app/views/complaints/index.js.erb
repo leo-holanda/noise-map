@@ -13,6 +13,29 @@ function get_noise_type(token){
   }
 }
 
+function get_highest_count(data){
+  highest = 0
+  for (let x of data){
+    if (x.count > highest) { highest = x.count }
+  }
+  return highest
+}
+
+function get_ceiling(number){
+  if(number > 10){
+    result_module = number % 10
+    
+    if (result_module == 0){
+      return number
+    }
+    
+    ceiling = number + (10 - (number % 10))
+    return ceiling
+  }
+
+  return 10
+}
+
 document.querySelector("#search_address").innerHTML +=
 "<%= escape_javascript(render "layouts/search_address_form",
                               is_complaint: 0,
@@ -32,7 +55,7 @@ let message = ""
 const mapPin = L.icon({
     iconUrl: '<%= asset_path "map-pin-solid.svg" %>',
     iconSize:     [38, 95], // size of the icon
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    iconAnchor:   [22, 94], // point of the icon which will correspond to markers location
     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
@@ -96,3 +119,51 @@ document.querySelector('#reset_button').addEventListener('click', function(event
   
   sidebar.close()
 })
+
+// Taken from here: https://www.d3-graph-gallery.com/graph/barplot_basic.html
+var margin = {top: 30, right: 30, bottom: 90, left: 60},
+    width = 800 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+var svg = d3.select("#charts")
+  .append("svg")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 800 600")
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+let chart_data = <%= raw @noise_data.to_json %>
+
+// X axis
+var x = d3.scaleBand()
+  .range([ 0, width ])
+  .domain(chart_data.map(function(d) { return get_noise_type(d.id); }))
+  .padding(0.2);
+
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x))
+  .selectAll("text")
+    .classed("is-size-7", true);
+
+max = get_highest_count(chart_data)
+
+// Y axis
+var y = d3.scaleLinear()
+  .domain([0, get_ceiling(max)])
+  .range([ height, 0]);
+svg.append("g")
+  .call(d3.axisLeft(y))
+
+// Bars
+svg.selectAll("bar")
+  .data(chart_data)
+  .enter()
+  .append("rect")
+    .attr("x", function(d) { return x(get_noise_type(d.id)); })
+    .attr("y", function(d) { return y(d.count); })
+    .attr("width", x.bandwidth())
+    .attr("height", function(d) { return height - y(d.count); })
+    .attr("fill", "#4474D9")

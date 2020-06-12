@@ -3,6 +3,7 @@ class ComplaintsController < ApplicationController
   def index
     @complaint = Complaint.new
     @all_complaints = Complaint.all
+    @noise_data = NoiseType.all
 
     respond_to do |format|
       format.html
