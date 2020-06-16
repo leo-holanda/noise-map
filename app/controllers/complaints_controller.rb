@@ -43,7 +43,7 @@ class ComplaintsController < ApplicationController
   private
 
   def complaint_params
-    params.require(:complaint).permit(:latitude, :longitude, :description, :noise_type_id)
+    params.require(:complaint).permit(:latitude, :longitude, :description, :noise_type)
   end
 
   def search_params

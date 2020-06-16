@@ -40,14 +40,4 @@ class ComplaintTest < ActiveSupport::TestCase
     complaint.noise_type = nil
     assert_not complaint.save
   end
-
-  test "should get noise type" do
-    noise_type = @complaint.get_noise_type  
-    refute_nil noise_type
-  end
-
-  test "should not get noise type" do
-    complaint = complaints(:wrong_noise_type)  
-    assert_nil complaint.get_noise_type
-  end
 end

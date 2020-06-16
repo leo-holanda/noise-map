@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_09_004105) do
+ActiveRecord::Schema.define(version: 2020_06_16_232132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,13 +21,11 @@ ActiveRecord::Schema.define(version: 2020_05_09_004105) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "noise_type_id"
-    t.index ["noise_type_id"], name: "index_complaints_on_noise_type_id"
+    t.integer "noise_type"
   end
 
   create_table "noise_types", force: :cascade do |t|
     t.integer "count", default: 0, null: false
   end
 
-  add_foreign_key "complaints", "noise_types"
 end

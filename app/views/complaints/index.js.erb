@@ -48,7 +48,7 @@ document.querySelector("#create_complaint").innerHTML += "<%= escape_javascript(
 let address_field = document.querySelector('#complaint_address_field')
 const latitude_field = document.querySelector('#complaint_latitude')
 const longitude_field = document.querySelector('#complaint_longitude')
-const noise_type_field = document.querySelector('#complaint_noise_type_id')
+const noise_type_field = document.querySelector('#complaint_noise_type')
 const description_field = document.querySelector('#complaint_description')
 let message = ""
 
@@ -90,7 +90,7 @@ const heatmapData = { max: 8, data: [] };
 let complaints = <%= raw  @all_complaints.to_json %>
 for (let i = 0; i < complaints.length; i++) {
   clusterLayer.addLayer(L.marker([complaints[i].latitude, complaints[i].longitude], { icon: complaintIcon }).bindPopup(
-    "<strong>Tipo</strong> <br>" + get_noise_type(complaints[i].noise_type_id) + "<br><br>"
+    "<strong>Tipo</strong> <br>" + get_noise_type(complaints[i].noise_type) + "<br><br>"
     + "<strong>Descrição</strong> <br>" + complaints[i].description + "<br><br>"
     + "<strong>Criado em</strong> <br>" + complaints[i].created_at ))
 

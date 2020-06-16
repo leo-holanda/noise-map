@@ -8,10 +8,10 @@ ok:
   latitude: 0.49587293e2
   longitude: -0.93748259e2
   description: "dsasdasd"
-  noise_type: 1
+  noise_type: "1"
 
 wrong_noise_type: 
   latitude: 0.49587293e2
   longitude: -0.93748259e2
   description: "dsasdasd"
-  noise_type: 0
+  noise_type: "0"

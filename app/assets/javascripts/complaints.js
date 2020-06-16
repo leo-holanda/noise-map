@@ -18,9 +18,9 @@ sidebar.addPanel({
   id: "app_info", // UID, used to access the panel
   tab: '<i class="fas fa-home"></i>', // content can be passed as HTML string,
   pane: '<br><p class="is-family-primary has-text-weight-semibold is-size-6"> \
-         Noise-map é mapa interativo de relatos sobre ruídos urbanos como obras de construção civil, tráfego de veículos e vizinhos incômodos, por exemplo. \
+         Noise-map é um mapa interativo de relatos sobre ruídos urbanos como obras de construção civil, tráfego de veículos e vizinhos incômodos, por exemplo. \
          É possível visualizar os relatos através de marcadores no mapa que, ao serem clicados, revelam o tipo de ruído, a descrição proveniente do usuário e \
-         o dia e hora de criação do relato. <br><br> Caso haja uma área com alta concentração de relatos, estes serão agrupados para facilitar seu acesso, bem como para \
+         o dia e hora em que o relato foi criado. <br><br> Caso haja uma área com alta concentração de relatos, estes serão agrupados para facilitar seu acesso, bem como para \
          melhorar a visibilidade do mapa. Nota-se o agrupamento através de um círculo colorido envolvendo um contador de relatos que, ao ser clicado, revela os marcadores anteriormente agrupados. \
          Além disso, é possível visualizar os relatos através do mapa de calor clicando no ícone <i class="fas fa-layer-group"></i>. \
          <br><br> Para adicionar um relato, clique no ícone <i class="fas fa-plus-circle"></i>. Para visualizar os relatos nos arredores de um determinado endereço, \
@@ -49,13 +49,16 @@ sidebar.addPanel({
 sidebar.addPanel({
   id: 'change_layer',
   tab: '<i class="fas fa-layer-group"></i>',
-  button: function (event) { 
+  button: function () { 
+    heatmap_button = document.querySelector("a[href='#change_layer']")
     if(map.hasLayer(clusterLayer)){
+      heatmap_button.classList.add("active-heatmap-button");
       map.removeLayer(clusterLayer)
       map.addLayer(heatmapLayer);
       heatmapLayer.setData(heatmapData);
     }
     else{
+      heatmap_button.classList.remove("active-heatmap-button")
       map.removeLayer(heatmapLayer)
       map.addLayer(clusterLayer)  
     }
