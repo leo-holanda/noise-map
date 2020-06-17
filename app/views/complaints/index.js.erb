@@ -75,7 +75,7 @@ marker.on('dragend', function(event) {
   longitude_field.value = event.target._latlng.lng
 });
 
-const clusterLayer = L.markerClusterGroup();
+var clusterLayer = L.markerClusterGroup();
 
 const config = {
   "radius": 0.0016,
