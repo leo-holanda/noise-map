@@ -18,17 +18,19 @@
   </div>
 
   <div class="field">
-    <%= f.label(:noise_type, "Tipo de ruído", class: "label") %>
+    <%= f.label(:noise_type, "Fonte do ruído", class: "label") %>
     <div class="control">
       <div class="select">
-          <%= f.select(:noise_type, options_for_select(
-            [
-              ["Disparo de alarmes", 1],
-              ["Música alta", 2],
-              ["Obras de construção civil", 3],
-              ["Ruídos de vizinhos", 4],
-              ["Tráfego de veículos", 5]
-            ], 1), class:"select") %>
+      <%= f.select(:noise_type, options_for_select(
+            [ 
+              ["Residência", 1],
+              ["Comércio", 2],
+              ["Indústria", 3],
+              ["Templo religioso", 4],
+              ["Transporte", 5],
+              ["Construção civil", 6],
+              ["Outros", 7]
+          ]), required: true ) %>
       </div>
     </div>
   </div>

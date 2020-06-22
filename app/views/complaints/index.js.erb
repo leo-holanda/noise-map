@@ -1,15 +1,19 @@
 function get_noise_type(token){
   switch(token){
     case 1:
-      return "Disparo de alarmes"
+      return "Residência"
     case 2:
-      return "Música alta"
+      return "Comércio"
     case 3:
-      return "Obras de construção civil"
+      return "Indústria"
     case 4:
-      return  "Ruídos de vizinhos"
+      return  "Templo Religioso"
     case 5:
-      return  "Tráfego de veículos"
+      return  "Transporte"
+    case 6:
+      return  "Construção civil"
+    case 7:
+      return  "Outros"
   }
 }
 
@@ -90,7 +94,7 @@ const heatmapData = { max: 8, data: [] };
 let complaints = <%= raw  @all_complaints.to_json %>
 for (let i = 0; i < complaints.length; i++) {
   clusterLayer.addLayer(L.marker([complaints[i].latitude, complaints[i].longitude], { icon: complaintIcon }).bindPopup(
-    "<strong>Tipo</strong> <br>" + get_noise_type(complaints[i].noise_type) + "<br><br>"
+    "<strong>Fonte</strong> <br>" + get_noise_type(complaints[i].noise_type) + "<br><br>"
     + "<strong>Descrição</strong> <br>" + complaints[i].description + "<br><br>"
     + "<strong>Criado em</strong> <br>" + complaints[i].created_at ))
 
