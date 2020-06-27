@@ -13,6 +13,7 @@ Interactive map where the user can see and create reports of urban noise marked 
 * [Geocoder](https://github.com/alexreisner/geocoder) - "Complete Ruby geocoding solution"
   * [PickPoint](https://pickpoint.io/) - "Geocoding service for developers"
 * [Font Awesome](https://fontawesome.com/) - Icon set
+* [D3.js](https://d3js.org/) - Creating charts
 
 ## Getting Started
 
@@ -32,6 +33,7 @@ yarn install
 4. Migrate the database
 ```
 rails db:migrate
+rails db:seed
 ```
 5. Run the application
 ```
